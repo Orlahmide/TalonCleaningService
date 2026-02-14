@@ -112,7 +112,7 @@ export default function TalonCleaningWebsite() {
       `}</style>
 
             {/* Navigation */}
-            <nav className={`bg-[#0F2A44] fixed w-full top-0 z-50 transition-shadow duration-300 ${scrolled ? 'shadow-2xl' : 'shadow-lg'
+            <nav className={`bg-[#1a1a33] fixed w-full top-0 z-50 transition-shadow duration-300 ${scrolled ? 'shadow-2xl' : 'shadow-lg'
                 }`}>
                 <div className="max-w-7xl mx-auto px-10 flex justify-between items-center h-20">
                     <a href="#" className="font-playfair text-2xl font-bold text-white flex items-center gap-2">
