@@ -4,6 +4,8 @@ import accommodationImg from '../assets/accommodation.jpg'
 import hospitalityImg from '../assets/hospitality.jpg'
 import domesticImg from '../assets/domestic.jpg'
 import heroImage from '../assets/domestic.jpg'
+import aboutImage from '../assets/accommodation.jpg'
+
 
 
 export default function TalonCleaningWebsite() {
@@ -315,21 +317,37 @@ export default function TalonCleaningWebsite() {
             <section id="about" className="bg-white py-24 px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-[#C6A35A]/20 to-[#0F2A44]/20 rounded-lg"></div>
+
+                        {/* Image Side */}
+                        <div className="relative w-full h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-2xl group">
+                            <img
+                                src={aboutImage}
+                                alt="Talon Cleaning team at work"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+
+                            {/* Subtle Brand Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#0F2A44]/20 via-transparent to-[#C6A35A]/10"></div>
+                        </div>
+
+                        {/* Text Side */}
                         <div>
                             <h2 className="font-playfair text-4xl md:text-5xl text-[#0F2A44] mb-6">
                                 Cleaning with Purpose
                             </h2>
+
                             <p className="text-[#2E2E2E] leading-relaxed mb-5 text-lg">
-                                Talon Cleaning Services was founded on a simple belief — clean spaces support better
-                                wellbeing, productivity, and everyday living.
+                                Talon Cleaning Services was founded on a simple belief — clean spaces
+                                support better wellbeing, productivity, and everyday living.
                             </p>
+
                             <p className="text-[#2E2E2E] leading-relaxed mb-8 text-lg">
-                                We understand that whether at home, at work, or welcoming guests, the condition of a
-                                space affects how people feel. That's why we go beyond basic cleaning to deliver
-                                dependable, professionally managed services that create environments people feel
-                                comfortable and confident in.
+                                We understand that whether at home, at work, or welcoming guests,
+                                the condition of a space affects how people feel. That’s why we go
+                                beyond basic cleaning to deliver dependable, professionally managed
+                                services that create environments people feel comfortable and confident in.
                             </p>
+
                             <button
                                 onClick={() => setShowConsultationModal(true)}
                                 className="bg-[#C6A35A] text-[#0F2A44] px-10 py-4 rounded font-semibold hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -337,9 +355,11 @@ export default function TalonCleaningWebsite() {
                                 Learn More About Us
                             </button>
                         </div>
+
                     </div>
                 </div>
             </section>
+
 
             {/* How It Works */}
             <section className="bg-[#F7F6F2] py-24 px-6">
