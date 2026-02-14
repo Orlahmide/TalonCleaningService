@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom tweaks */
+:root{
+  --brand-blue: #0b6efd;
+  --brand-blue-600: #0956d6;
+  --muted: #6b7280;
+}
+
+body{ background-color: #ffffff; }
+
+.btn {
+  @apply px-4 py-2 rounded-md font-semibold shadow-sm;
+}
+
+.btn-primary {
+  @apply bg-[var(--brand-blue)] text-white hover:bg-[var(--brand-blue-600)];
+}
+
+.container {
+  @apply max-w-5xl mx-auto px-6;
+}
