@@ -471,54 +471,78 @@ export default function TalonCleaningWebsite() {
 
             {/* Quote Modal */}
             {showQuoteModal && (
-                <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 animate-fadeIn overflow-y-auto">
-                    <div className="bg-white rounded-lg max-w-2xl w-full p-12 relative animate-slideUp my-8">
+                <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 overflow-y-auto animate-fadeIn">
+                    <div className="bg-white rounded-lg w-full max-w-2xl relative my-8 p-6 md:p-12
+                    flex flex-col max-h-[90vh] overflow-y-auto animate-slideUp">
+
+                        {/* Close Button */}
                         <button
-                            onClick={() => {
-                                setShowQuoteModal(false);
-                                setQuoteSuccess(false);
-                            }}
-                            className="absolute right-6 top-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors"
+                            onClick={() => { setShowQuoteModal(false); setQuoteSuccess(false); }}
+                            className="absolute top-4 right-4 md:top-6 md:right-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors z-50"
                         >
                             &times;
                         </button>
-                        <h2 className="font-playfair text-3xl text-[#0F2A44] mb-8">Get a Free Quote</h2>
-                        <form onSubmit={handleQuoteSubmit} className="space-y-5">
+
+                        {/* Modal Heading */}
+                        <h2 className="font-playfair text-2xl md:text-3xl text-[#0F2A44] mb-6 md:mb-8">
+                            Get a Free Quote
+                        </h2>
+
+                        {/* Form */}
+                        <form onSubmit={handleQuoteSubmit} className="space-y-4 md:space-y-5">
                             <FormField label="Full Name *" name="name" type="text" required />
                             <FormField label="Email Address *" name="email" type="email" required />
                             <FormField label="Phone Number *" name="phone" type="tel" required />
-                            <FormSelect label="Type of Service Needed *" name="service" required options={[
-                                { value: '', label: 'Select a service' },
-                                { value: 'commercial', label: 'Commercial' },
-                                { value: 'accommodation', label: 'Accommodation' },
-                                { value: 'hospitality', label: 'Hospitality' },
-                                { value: 'domestic', label: 'Domestic' },
-                                { value: 'other', label: 'Others' }
-                            ]} />
-                            <FormSelect label="Cleaning Frequency *" name="frequency" required options={[
-                                { value: '', label: 'Select frequency' },
-                                { value: 'one-off', label: 'One-off' },
-                                { value: 'daily', label: 'Daily' },
-                                { value: 'weekly', label: 'Weekly' },
-                                { value: 'bi-weekly', label: 'Bi-weekly' },
-                                { value: 'monthly', label: 'Monthly' },
-                                { value: 'other', label: 'Others' }
-                            ]} />
-                            <FormSelect label="Preferred Method of Communication *" name="contact" required options={[
-                                { value: '', label: 'Select method' },
-                                { value: 'phone', label: 'Phone call' },
-                                { value: 'email', label: 'Email' },
-                                { value: 'text', label: 'Text Message' }
-                            ]} />
+                            <FormSelect
+                                label="Type of Service Needed *"
+                                name="service"
+                                required
+                                options={[
+                                    { value: '', label: 'Select a service' },
+                                    { value: 'commercial', label: 'Commercial' },
+                                    { value: 'accommodation', label: 'Accommodation' },
+                                    { value: 'hospitality', label: 'Hospitality' },
+                                    { value: 'domestic', label: 'Domestic' },
+                                    { value: 'other', label: 'Others' }
+                                ]}
+                            />
+                            <FormSelect
+                                label="Cleaning Frequency *"
+                                name="frequency"
+                                required
+                                options={[
+                                    { value: '', label: 'Select frequency' },
+                                    { value: 'one-off', label: 'One-off' },
+                                    { value: 'daily', label: 'Daily' },
+                                    { value: 'weekly', label: 'Weekly' },
+                                    { value: 'bi-weekly', label: 'Bi-weekly' },
+                                    { value: 'monthly', label: 'Monthly' },
+                                    { value: 'other', label: 'Others' }
+                                ]}
+                            />
+                            <FormSelect
+                                label="Preferred Method of Communication *"
+                                name="contact"
+                                required
+                                options={[
+                                    { value: '', label: 'Select method' },
+                                    { value: 'phone', label: 'Phone call' },
+                                    { value: 'email', label: 'Email' },
+                                    { value: 'text', label: 'Text Message' }
+                                ]}
+                            />
                             <FormTextarea label="Message / Requirements" name="message" />
+
                             <button
                                 type="submit"
-                                className="bg-[#C6A35A] text-[#0F2A44] px-10 py-3 rounded font-semibold hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full"
+                                className="bg-[#C6A35A] text-[#0F2A44] px-6 py-3 md:px-10 md:py-3 rounded font-semibold
+                     hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full"
                             >
                                 Submit Quote Request
                             </button>
+
                             {quoteSuccess && (
-                                <div className="bg-green-100 border border-green-300 text-green-800 px-6 py-4 rounded mt-5">
+                                <div className="bg-green-100 border border-green-300 text-green-800 px-6 py-4 rounded mt-4">
                                     <strong>Thank you!</strong><br />
                                     Your quote request has been received. Our team will reach out to you soon.
                                 </div>
@@ -528,47 +552,67 @@ export default function TalonCleaningWebsite() {
                 </div>
             )}
 
+
             {/* Consultation Modal */}
             {showConsultationModal && (
-                <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 animate-fadeIn overflow-y-auto">
-                    <div className="bg-white rounded-lg max-w-2xl w-full p-12 relative animate-slideUp my-8">
+                <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 overflow-y-auto animate-fadeIn">
+                    <div className="bg-white rounded-lg w-full max-w-2xl relative my-8 p-6 md:p-12
+                    flex flex-col max-h-[90vh] overflow-y-auto animate-slideUp">
+
+                        {/* Close Button */}
                         <button
-                            onClick={() => {
-                                setShowConsultationModal(false);
-                                setConsultSuccess(false);
-                            }}
-                            className="absolute right-6 top-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors"
+                            onClick={() => { setShowConsultationModal(false); setConsultSuccess(false); }}
+                            className="absolute top-4 right-4 md:top-6 md:right-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors z-50"
                         >
                             &times;
                         </button>
-                        <h2 className="font-playfair text-3xl text-[#0F2A44] mb-8">Book a Free Consultation</h2>
-                        <form onSubmit={handleConsultationSubmit} className="space-y-5">
+
+                        {/* Modal Heading */}
+                        <h2 className="font-playfair text-2xl md:text-3xl text-[#0F2A44] mb-6 md:mb-8">
+                            Book a Free Consultation
+                        </h2>
+
+                        {/* Form */}
+                        <form onSubmit={handleConsultationSubmit} className="space-y-4 md:space-y-5">
                             <FormField label="Full Name *" name="name" type="text" required />
                             <FormField label="Email Address *" name="email" type="email" required />
                             <FormField label="Phone Number *" name="phone" type="tel" required />
-                            <FormSelect label="Type of Service Needed *" name="service" required options={[
-                                { value: '', label: 'Select a service' },
-                                { value: 'commercial', label: 'Commercial' },
-                                { value: 'accommodation', label: 'Accommodation' },
-                                { value: 'hospitality', label: 'Hospitality' },
-                                { value: 'domestic', label: 'Domestic' },
-                                { value: 'other', label: 'Others' }
-                            ]} />
-                            <FormSelect label="Preferred Method of Communication *" name="contact" required options={[
-                                { value: '', label: 'Select method' },
-                                { value: 'phone', label: 'Phone call' },
-                                { value: 'email', label: 'Email' },
-                                { value: 'text', label: 'Text Message' }
-                            ]} />
+                            <FormSelect
+                                label="Type of Service Needed *"
+                                name="service"
+                                required
+                                options={[
+                                    { value: '', label: 'Select a service' },
+                                    { value: 'commercial', label: 'Commercial' },
+                                    { value: 'accommodation', label: 'Accommodation' },
+                                    { value: 'hospitality', label: 'Hospitality' },
+                                    { value: 'domestic', label: 'Domestic' },
+                                    { value: 'other', label: 'Others' }
+                                ]}
+                            />
+                            <FormSelect
+                                label="Preferred Method of Communication *"
+                                name="contact"
+                                required
+                                options={[
+                                    { value: '', label: 'Select method' },
+                                    { value: 'phone', label: 'Phone call' },
+                                    { value: 'email', label: 'Email' },
+                                    { value: 'text', label: 'Text Message' }
+                                ]}
+                            />
                             <FormTextarea label="Message / Requirements" name="message" />
+
                             <button
                                 type="submit"
-                                className="bg-[#C6A35A] text-[#0F2A44] px-10 py-3 rounded font-semibold hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full"
+                                className="bg-[#C6A35A] text-[#0F2A44] px-6 py-3 md:px-10 md:py-3 rounded font-semibold
+                     hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full"
                             >
                                 Book Consultation
                             </button>
+
                             {consultSuccess && (
-                                <div className="bg-green-100 border border-green-300 text-green-800 px-6 py-4 rounded mt-5">
+                                <div className="bg-green-100 border border-green-300 text-green-800 px-6 py-4 rounded mt-4">
                                     <strong>Thank you!</strong><br />
                                     Your consultation request has been received. Our team will reach out to you soon.
                                 </div>
@@ -577,6 +621,7 @@ export default function TalonCleaningWebsite() {
                     </div>
                 </div>
             )}
+
         </div>
     );
 }
