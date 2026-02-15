@@ -4,15 +4,19 @@ import accommodationImg from '../assets/accommodation.jpg'
 import hospitalityImg from '../assets/hospitality.jpg'
 import domesticImg from '../assets/domestic.jpg'
 import heroImage from '../assets/domestic.jpg'
-import aboutImage from '../assets/accommodation.jpg'
+import aboutImage from '../assets/aboutPicture.png'
 import logo from '../assets/icon.png';
+import QuoteModal from '../components/QuoteModal';
+import ConsultationModal from '../components/ConsultationModal';
+import { useNavigate } from 'react-router-dom';
 
-export default function TalonCleaningWebsite() {
+export default function Home() {
     const [showQuoteModal, setShowQuoteModal] = useState(false);
     const [showConsultationModal, setShowConsultationModal] = useState(false);
     const [quoteSuccess, setQuoteSuccess] = useState(false);
     const [consultSuccess, setConsultSuccess] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,14 +25,6 @@ export default function TalonCleaningWebsite() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    useEffect(() => {
-        if (showQuoteModal || showConsultationModal) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    }, [showQuoteModal, showConsultationModal]);
 
     const handleQuoteSubmit = (e) => {
         e.preventDefault();
@@ -115,25 +111,26 @@ export default function TalonCleaningWebsite() {
                 className={`bg-[#0F2A44] fixed w-full top-0 z-50 transition-shadow duration-300 ${scrolled ? 'shadow-2xl' : 'shadow-lg'
                     }`}
             >
-                <div className="max-w-7xl mx-auto px-10 flex justify-between items-center h-20">
+                <div className="max-w-7xl mx-auto px-10 flex justify-between items-center h-24">
                     <a
                         href="#"
                         className="font-playfair text-2xl font-bold text-white flex items-center gap-3"
                     >
-                        
+
                         <img
-                            src= {logo}  
+                            src={logo}
                             alt="Talon Cleaning Logo"
-                            className="h-20 w-auto object-contain"
+                            className="h-24 w-auto object-contain"
                         />
-                        TALON CLEANING SERVICES
-                    </a>
+                        <span className="tracking-wide">
+                            TALON <span className="text-[#C6A35A]">CLEANING</span> SERVICES
+                        </span>                    </a>
 
                     <div className="hidden md:flex gap-10 items-center">
                         <button onClick={() => scrollToSection('home')} className="text-white hover:text-[#C6A35A] transition-colors duration-300">
                             Home
                         </button>
-                        <button onClick={() => scrollToSection('services')} className="text-white hover:text-[#C6A35A] transition-colors duration-300">
+                        <button onClick={() => navigate('/services')} className="text-white hover:text-[#C6A35A] transition-colors duration-300">
                             Services
                         </button>
                         <button onClick={() => scrollToSection('about')} className="text-white hover:text-[#C6A35A] transition-colors duration-300">
@@ -212,18 +209,48 @@ export default function TalonCleaningWebsite() {
                 </div>
             </section>
 
-
-            {/* Trust Strip */}
-            <section className="bg-white py-16 px-6 text-center">
+            {/* Service Locations */}
+            <section className="bg-[#e6e1d5] py-20 px-6 text-center">
                 <div className="max-w-6xl mx-auto">
-                    <h3 className="font-playfair text-3xl text-[#0F2A44] mb-10">
-                        Cleaning Solutions You Can Depend On
+
+                    {/* Elegant Heading */}
+                    <h3 className="font-playfair text-3xl md:text-4xl text-[#0F2A44] mb-4">
+                        Areas We Proudly Currently Serve
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                        {['Commercial Cleaning', 'Accommodation Turnovers', 'Hospitality Cleaning', 'Domestic Cleaning', 'Deep Cleaning Services'].map((item, index) => (
-                            <div key={index} className="flex items-center justify-center gap-3 text-[#2E2E2E] font-medium animate-fadeIn opacity-0" style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'forwards' }}>
-                                <span className="text-[#C6A35A] text-xl font-bold">✓</span>
-                                {item}
+
+                    <div className="w-24 h-[2px] bg-[#C6A35A] mx-auto mb-6"></div>
+
+                    <p className="text-[#555] mb-14 max-w-2xl mx-auto">
+                        Delivering professional cleaning services across Cambridgeshire and Lincolnshire.
+                    </p>
+
+                    {/* Locations Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        {[
+                            'Wisbech',
+                            'Ely',
+                            'Spalding',
+                            'Boston',
+                            'Bourne',
+                            'Peterborough',
+                            'Stamford',
+                            'Sleaford',
+                            'Holbeach'
+                        ].map((location, index) => (
+                            <div
+                                key={index}
+                                className="group bg-white border border-[#e5e5e5] rounded-lg py-8 px-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fadeIn opacity-0"
+                                style={{
+                                    animationDelay: `${index * 80}ms`,
+                                    animationFillMode: 'forwards'
+                                }}
+                            >
+                                <span className="text-[#C6A35A] text-2xl block mb-3">
+                                    ✦
+                                </span>
+                                <p className="text-[#0F2A44] font-medium text-lg tracking-wide group-hover:text-[#C6A35A] transition-colors duration-300">
+                                    {location}
+                                </p>
                             </div>
                         ))}
                     </div>
@@ -231,7 +258,7 @@ export default function TalonCleaningWebsite() {
             </section>
 
             {/* Services Section */}
-            <section id="services" className="bg-[#F7F6F2] py-24 px-6">
+            <section id="service" className="bg-[#F7F6F2] py-24 px-6">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="font-playfair text-center text-4xl md:text-5xl text-[#0F2A44] mb-5">
                         Cleaning Services Designed Around Your Needs
@@ -243,24 +270,28 @@ export default function TalonCleaningWebsite() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                         {[
                             {
+                                id: 'commercial',
                                 title: 'Commercial Cleaning',
                                 description:
                                     'Maintain a clean, professional environment for your team and visitors with reliable office and workspace cleaning delivered to consistent standards.',
                                 image: commercialImg
                             },
                             {
+                                id: 'accommodation',
                                 title: 'Accommodation Cleaning',
                                 description:
                                     'Efficient and thorough cleaning for serviced accommodation, Airbnb properties, and student turnovers — ensuring every guest arrives to a spotless space.',
                                 image: accommodationImg
                             },
                             {
+                                id: 'hospitality',
                                 title: 'Hospitality Cleaning',
                                 description:
                                     'High-standard cleaning solutions supporting hotels and hospitality environments where presentation and consistency matter most.',
                                 image: hospitalityImg
                             },
                             {
+                                id: 'domestic',
                                 title: 'Domestic Cleaning',
                                 description:
                                     'Dependable home cleaning services that help you enjoy a cleaner, calmer living space without the stress.',
@@ -269,22 +300,32 @@ export default function TalonCleaningWebsite() {
                         ].map((service, index) => (
                             <div
                                 key={index}
-                                className="bg-white p-10 rounded-lg transition-all duration-300 border border-[#0F2A44]/10 hover:-translate-y-2 hover:shadow-xl hover:border-[#C6A35A] cursor-pointer"
+                                className="bg-white p-10 rounded-lg transition-all duration-300 border border-[#0F2A44]/10 hover:-translate-y-2 hover:shadow-xl hover:border-[#C6A35A]"
                             >
-                                {/* Image */}
                                 <img
                                     src={service.image}
                                     alt={service.title}
-                                    className="w-full h-48 object-cover"
+                                    className="w-full h-48 object-cover rounded-lg mb-6"
                                 />
                                 <h3 className="font-playfair text-2xl text-[#0F2A44] mb-4">{service.title}</h3>
-                                <p className="text-[#2E2E2E] leading-relaxed">{service.description}</p>
+                                <p className="text-[#2E2E2E] leading-relaxed mb-6">{service.description}</p>
+
+                                {/* Updated Learn More Button */}
+                                <button
+                                    onClick={() => navigate(`/services/${service.id}`)}
+                                    className="text-[#C6A35A] font-semibold hover:text-[#B89245] transition-colors duration-300 flex items-center gap-2"
+                                >
+                                    Learn More
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
                             </div>
                         ))}
                     </div>
                     <div className="text-center">
                         <button
-                            onClick={() => setShowConsultationModal(true)}
+                            onClick={() => navigate('/services')}
                             className="bg-[#C6A35A] text-[#0F2A44] px-10 py-4 rounded font-semibold hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                         >
                             View All Services
@@ -436,7 +477,7 @@ export default function TalonCleaningWebsite() {
             </section>
 
             {/* Footer */}
-            <footer className="bg-[#0F2A44] text-white py-16 px-6">
+            <footer className="bg-[#0F2A44] text-white py-4 px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-10">
                         <div>
@@ -466,9 +507,8 @@ export default function TalonCleaningWebsite() {
                         <div>
                             <h3 className="font-playfair text-xl mb-5 text-[#C6A35A]">Contact Us</h3>
                             <ul className="space-y-3 text-white/80">
-                                <li>📞 Phone Number</li>
-                                <li>✉ Email Address</li>
-                                <li>📍 Service Areas</li>
+                                <li>📞 Phone Number: 09037362051</li>
+                                <li>✉ Email Address: TalongCleaninService@gmail.com</li>
                             </ul>
                         </div>
                     </div>
@@ -478,204 +518,21 @@ export default function TalonCleaningWebsite() {
                 </div>
             </footer>
 
-            {/* Quote Modal */}
-            {showQuoteModal && (
-                <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 overflow-y-auto animate-fadeIn">
-                    <div className="bg-white rounded-lg w-full max-w-2xl relative my-8 p-6 md:p-12
-                    flex flex-col max-h-[90vh] overflow-y-auto animate-slideUp">
-
-                        {/* Close Button */}
-                        <button
-                            onClick={() => { setShowQuoteModal(false); setQuoteSuccess(false); }}
-                            className="absolute top-4 right-4 md:top-6 md:right-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors z-50"
-                        >
-                            &times;
-                        </button>
-
-                        {/* Modal Heading */}
-                        <h2 className="font-playfair text-2xl md:text-3xl text-[#0F2A44] mb-6 md:mb-8">
-                            Get a Free Quote
-                        </h2>
-
-                        {/* Form */}
-                        <form onSubmit={handleQuoteSubmit} className="space-y-4 md:space-y-5">
-                            <FormField label="Full Name *" name="name" type="text" required />
-                            <FormField label="Email Address *" name="email" type="email" required />
-                            <FormField label="Phone Number *" name="phone" type="tel" required />
-                            <FormSelect
-                                label="Type of Service Needed *"
-                                name="service"
-                                required
-                                options={[
-                                    { value: '', label: 'Select a service' },
-                                    { value: 'commercial', label: 'Commercial' },
-                                    { value: 'accommodation', label: 'Accommodation' },
-                                    { value: 'hospitality', label: 'Hospitality' },
-                                    { value: 'domestic', label: 'Domestic' },
-                                    { value: 'other', label: 'Others' }
-                                ]}
-                            />
-                            <FormSelect
-                                label="Cleaning Frequency *"
-                                name="frequency"
-                                required
-                                options={[
-                                    { value: '', label: 'Select frequency' },
-                                    { value: 'one-off', label: 'One-off' },
-                                    { value: 'daily', label: 'Daily' },
-                                    { value: 'weekly', label: 'Weekly' },
-                                    { value: 'bi-weekly', label: 'Bi-weekly' },
-                                    { value: 'monthly', label: 'Monthly' },
-                                    { value: 'other', label: 'Others' }
-                                ]}
-                            />
-                            <FormSelect
-                                label="Preferred Method of Communication *"
-                                name="contact"
-                                required
-                                options={[
-                                    { value: '', label: 'Select method' },
-                                    { value: 'phone', label: 'Phone call' },
-                                    { value: 'email', label: 'Email' },
-                                    { value: 'text', label: 'Text Message' }
-                                ]}
-                            />
-                            <FormTextarea label="Message / Requirements" name="message" />
-
-                            <button
-                                type="submit"
-                                className="bg-[#C6A35A] text-[#0F2A44] px-6 py-3 md:px-10 md:py-3 rounded font-semibold
-                     hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full"
-                            >
-                                Submit Quote Request
-                            </button>
-
-                            {quoteSuccess && (
-                                <div className="bg-green-100 border border-green-300 text-green-800 px-6 py-4 rounded mt-4">
-                                    <strong>Thank you!</strong><br />
-                                    Your quote request has been received. Our team will reach out to you soon.
-                                </div>
-                            )}
-                        </form>
-                    </div>
-                </div>
-            )}
-
-
-            {/* Consultation Modal */}
-            {showConsultationModal && (
-                <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 overflow-y-auto animate-fadeIn">
-                    <div className="bg-white rounded-lg w-full max-w-2xl relative my-8 p-6 md:p-12
-                    flex flex-col max-h-[90vh] overflow-y-auto animate-slideUp">
-
-                        {/* Close Button */}
-                        <button
-                            onClick={() => { setShowConsultationModal(false); setConsultSuccess(false); }}
-                            className="absolute top-4 right-4 md:top-6 md:right-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors z-50"
-                        >
-                            &times;
-                        </button>
-
-                        {/* Modal Heading */}
-                        <h2 className="font-playfair text-2xl md:text-3xl text-[#0F2A44] mb-6 md:mb-8">
-                            Book a Free Consultation
-                        </h2>
-
-                        {/* Form */}
-                        <form onSubmit={handleConsultationSubmit} className="space-y-4 md:space-y-5">
-                            <FormField label="Full Name *" name="name" type="text" required />
-                            <FormField label="Email Address *" name="email" type="email" required />
-                            <FormField label="Phone Number *" name="phone" type="tel" required />
-                            <FormSelect
-                                label="Type of Service Needed *"
-                                name="service"
-                                required
-                                options={[
-                                    { value: '', label: 'Select a service' },
-                                    { value: 'commercial', label: 'Commercial' },
-                                    { value: 'accommodation', label: 'Accommodation' },
-                                    { value: 'hospitality', label: 'Hospitality' },
-                                    { value: 'domestic', label: 'Domestic' },
-                                    { value: 'other', label: 'Others' }
-                                ]}
-                            />
-                            <FormSelect
-                                label="Preferred Method of Communication *"
-                                name="contact"
-                                required
-                                options={[
-                                    { value: '', label: 'Select method' },
-                                    { value: 'phone', label: 'Phone call' },
-                                    { value: 'email', label: 'Email' },
-                                    { value: 'text', label: 'Text Message' }
-                                ]}
-                            />
-                            <FormTextarea label="Message / Requirements" name="message" />
-
-                            <button
-                                type="submit"
-                                className="bg-[#C6A35A] text-[#0F2A44] px-6 py-3 md:px-10 md:py-3 rounded font-semibold
-                     hover:bg-[#B89245] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full"
-                            >
-                                Book Consultation
-                            </button>
-
-                            {consultSuccess && (
-                                <div className="bg-green-100 border border-green-300 text-green-800 px-6 py-4 rounded mt-4">
-                                    <strong>Thank you!</strong><br />
-                                    Your consultation request has been received. Our team will reach out to you soon.
-                                </div>
-                            )}
-                        </form>
-                    </div>
-                </div>
-            )}
-
-        </div>
-    );
-}
-
-// Form Components
-function FormField({ label, name, type, required }) {
-    return (
-        <div>
-            <label className="block mb-2 text-[#2E2E2E] font-medium">{label}</label>
-            <input
-                type={type}
-                name={name}
-                required={required}
-                className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-[#C6A35A] transition-colors"
+            {/* Modals */}
+            <QuoteModal
+                showQuoteModal={showQuoteModal}
+                setShowQuoteModal={setShowQuoteModal}
+                quoteSuccess={quoteSuccess}
+                setQuoteSuccess={setQuoteSuccess}
             />
-        </div>
-    );
-}
 
-function FormSelect({ label, name, required, options }) {
-    return (
-        <div>
-            <label className="block mb-2 text-[#2E2E2E] font-medium">{label}</label>
-            <select
-                name={name}
-                required={required}
-                className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-[#C6A35A] transition-colors"
-            >
-                {options.map((option, index) => (
-                    <option key={index} value={option.value}>{option.label}</option>
-                ))}
-            </select>
-        </div>
-    );
-}
-
-function FormTextarea({ label, name }) {
-    return (
-        <div>
-            <label className="block mb-2 text-[#2E2E2E] font-medium">{label}</label>
-            <textarea
-                name={name}
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-[#C6A35A] transition-colors resize-y"
+            <ConsultationModal
+                showConsultationModal={showConsultationModal}
+                setShowConsultationModal={setShowConsultationModal}
+                consultSuccess={consultSuccess}
+                setConsultSuccess={setConsultSuccess}
             />
+
         </div>
     );
 }

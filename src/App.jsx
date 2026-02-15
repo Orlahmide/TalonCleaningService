@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import TalonCleaningWebsite from './pages/TalonCleaningWebsite'
+import Home from './pages/Home'
+import ServicePageWrapper from './pages/ServicePageWrapper'
 
 export default function App() {
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
+
   return (
     <div className="min-h-screen text-gray-800">
-      <main className="py-o">
+      <main className="py-0">
         <Routes>
-          <Route path="/" element={<TalonCleaningWebsite />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<ServicePageWrapper  />} />
+          <Route path="/services/:serviceId" element={<ServicePageWrapper />} />
         </Routes>
       </main>
     </div>
