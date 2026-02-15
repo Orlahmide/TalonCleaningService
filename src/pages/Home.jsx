@@ -188,7 +188,7 @@ export default function Home() {
                         </button>
 
                         <button
-                            onClick={() => scrollToSection('services')}
+                            onClick={() => navigate('/services')}
                             className="bg-transparent text-white px-10 py-4 rounded font-semibold border-2 border-white hover:bg-white hover:text-[#0F2A44] transition-all duration-300"
                         >
                             Explore Our Services
