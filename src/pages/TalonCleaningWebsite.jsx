@@ -126,7 +126,7 @@ export default function TalonCleaningWebsite() {
                             alt="Talon Cleaning Logo"
                             className="h-20 w-auto object-contain"
                         />
-                        TALON CLEANING
+                        TALON CLEANING SERVICES
                     </a>
 
                     <div className="hidden md:flex gap-10 items-center">
