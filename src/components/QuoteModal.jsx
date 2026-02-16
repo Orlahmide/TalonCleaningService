@@ -1,29 +1,51 @@
 import React from 'react';
 
 export default function QuoteModal({ showQuoteModal, setShowQuoteModal, quoteSuccess, setQuoteSuccess }) {
-    const handleQuoteSubmit = (e) => {
+    const handleQuoteSubmit = async (e) => {
         e.preventDefault();
+
         const formData = new FormData(e.target);
-        console.log('Quote form submitted:', Object.fromEntries(formData));
-        setQuoteSuccess(true);
-        e.target.reset();
-        setTimeout(() => {
-            setQuoteSuccess(false);
-            setShowQuoteModal(false);
-        }, 3000);
+        const data = Object.fromEntries(formData);
+
+        try {
+            const response = await fetch('/api/quote', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                // Email sent successfully
+                setQuoteSuccess(true);
+                e.target.reset();
+
+                setTimeout(() => {
+                    setQuoteSuccess(false);
+                    setShowQuoteModal(false);
+                }, 3000);
+            } else {
+                // Handle server error
+                const err = await response.json();
+                alert(`Error sending quote: ${err.message}`);
+            }
+
+        } catch (error) {
+            console.error('Quote submission error:', error);
+            alert('Something went wrong. Please try again later.');
+        }
     };
 
     if (!showQuoteModal) return null;
 
     return (
-         <div 
-        className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 overflow-y-auto animate-fadeIn"
-        onClick={() => { setShowQuoteModal(false); setQuoteSuccess(false); }}
-    >
-        <div 
-            className="bg-white rounded-lg w-full max-w-2xl relative my-8 p-6 md:p-12 flex flex-col max-h-[90vh] overflow-y-auto animate-slideUp"
-            onClick={(e) => e.stopPropagation()}
+        <div
+            className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 overflow-y-auto animate-fadeIn"
+            onClick={() => { setShowQuoteModal(false); setQuoteSuccess(false); }}
         >
+            <div
+                className="bg-white rounded-lg w-full max-w-2xl relative my-8 p-6 md:p-12 flex flex-col max-h-[90vh] overflow-y-auto animate-slideUp"
+                onClick={(e) => e.stopPropagation()}
+            >
                 <style>{`
                     @keyframes fadeIn {
                       from { opacity: 0; }
