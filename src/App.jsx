@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import QuoteModal from "./components/QuoteModal";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   const [showQuoteModal, setShowQuoteModal] = useState(false);
@@ -21,7 +22,7 @@ export default function App() {
     <div className="min-h-screen text-gray-800">
       {/* Navigation - Single navbar for entire app */}
       <Navbar onGetQuote={handleGetQuote} />
-      
+       <ScrollToTop />
       <main className="py-0">
         <Routes>
           {/* Pass the quote handler to each page */}
