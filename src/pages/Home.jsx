@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState,useRef, useEffect } from "react";
 import commercialImg from "../assets/commercial.jpg";
 import accommodationImg from "../assets/accommodation.jpg";
 import hospitalityImg from "../assets/hospitality.jpg";
@@ -8,8 +8,6 @@ import aboutImage from "../assets/aboutPicture.png";
 import QuoteModal from "../components/QuoteModal";
 import ConsultationModal from "../components/ConsultationModal";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
 
 export default function Home() {
@@ -27,6 +25,40 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  function useReveal(threshold = 0.15) {
+    const ref = useRef(null);
+    const [visible, setVisible] = useState(false);
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+        { threshold }
+      );
+      obs.observe(el);
+      return () => obs.disconnect();
+    }, [threshold]);
+    return [ref, visible];
+  }
+
+  // Reusable reveal wrapper
+function Reveal({ children, delay = 0, className = "" }) {
+  const [ref, visible] = useReveal();
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(28px)",
+        transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
   return (
     <div className="font-sans text-[#2E2E2E]">
@@ -140,63 +172,61 @@ export default function Home() {
       </section>
 
       {/* Service Locations */}
-      <section className="bg-[#e6e1d5] py-20 px-6 text-center">
-        <div className="max-w-6xl mx-auto">
+      <section className="bg-[#e6e1d5] py-3 px-3 text-center">
+        <div className="max-w-3xl mx-auto">
           {/* Elegant Heading */}
-          <h3 className="font-playfair text-3xl md:text-4xl text-[#0F2A44] mb-4">
+          <h3 className="font-playfair text-3xl md:text-4xl text-[#0F2A44] mb-2">
             Areas We Proudly Currently Serve
           </h3>
 
-          <div className="w-24 h-[2px] bg-[#C6A35A] mx-auto mb-6"></div>
+          <div className="w-24 h-[2px] bg-[#C6A35A] mx-auto mb-3"></div>
 
-          <p className="text-[#555] mb-14 max-w-2xl mx-auto">
+          <p className="text-[#555] mb-9 max-w-2xl mx-auto">
             Delivering professional cleaning services across Cambridgeshire and
             Lincolnshire.
           </p>
 
           {/* Locations Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {[
               "Wisbech",
-              "Ely",
               "Spalding",
               "Boston",
               "Bourne",
               "Peterborough",
               "Stamford",
-              "Sleaford",
+              "Sheffield",
               "Holbeach",
             ].map((location, index) => (
               <div
                 key={index}
-                className="group bg-white border border-[#e5e5e5] rounded-lg py-8 px-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fadeIn opacity-0"
-                style={{
-                  animationDelay: `${index * 80}ms`,
-                  animationFillMode: "forwards",
-                }}
+                className="group bg-white border border-[#e5e5e5] rounded-md py-3 px-3 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
               >
-                <span className="text-[#C6A35A] text-2xl block mb-3">✦</span>
-                <p className="text-[#0F2A44] font-medium text-lg tracking-wide group-hover:text-[#C6A35A] transition-colors duration-300">
+                <span className="text-[#C6A35A] text-sm block mb-1">✦</span>
+                <p className="text-[#0F2A44] font-medium text-sm tracking-normal group-hover:text-[#C6A35A] transition-colors duration-300">
                   {location}
                 </p>
               </div>
             ))}
           </div>
+           <p className="text-[14px] mt-3 max-w-2xl mx-auto">
+            Don’t see your location? Reach out — we’d love to help!
+          </p>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="service" className="bg-[#F7F6F2] py-24 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section id="service" className="bg-[#F7F6F2] py-12 px-6">
+        <div className="max-w-7xl mx-auto">
           <h2 className="font-playfair text-center text-4xl md:text-5xl text-[#0F2A44] mb-5">
             Cleaning Services Designed Around Your Needs
           </h2>
-          <p className="text-center text-[#5A728A] max-w-3xl mx-auto mb-16 text-lg">
+          <p className="text-center text-[#5A728A] max-w-3xl mx-auto mb-8 text-lg">
             Every space is different. That's why we provide tailored cleaning
             services designed to meet the specific needs of businesses, property
             operators, and households.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {[
               {
                 id: "commercial",
@@ -229,7 +259,7 @@ export default function Home() {
             ].map((service, index) => (
               <div
                 key={index}
-                className="bg-white p-10 rounded-lg transition-all duration-300 border border-[#0F2A44]/10 hover:-translate-y-2 hover:shadow-xl hover:border-[#C6A35A]"
+                className="bg-white p-4 rounded-lg transition-all duration-300 border border-[#0F2A44]/10 hover:-translate-y-2 hover:shadow-xl hover:border-[#C6A35A]"
               >
                 <img
                   src={service.image}
@@ -278,17 +308,17 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-[#0F2A44] py-24 px-6 text-white">
+      <section className="bg-[#0F2A44] py-12 px-6 text-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-playfair text-center text-4xl md:text-5xl mb-5">
+          <h2 className="font-playfair text-center text-4xl md:text-5xl mb-2">
             Why Clients Trust Talon Cleaning Services
           </h2>
-          <p className="text-center text-white/80 max-w-3xl mx-auto mb-16 text-lg">
+          <p className="text-center text-white/80 max-w-3xl mx-auto mb-8 text-lg">
             We believe cleaning should bring confidence and peace of mind — not
             uncertainty. Our approach focuses on reliability, professionalism,
             and attention to detail in every service we deliver.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: "✓",
@@ -330,11 +360,11 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="bg-white py-24 px-6">
+      <section id="about" className="bg-white py-4 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Image Side */}
-            <div className="relative w-full h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-2xl group">
+            <div className="relative w-full h-60 lg:h-[300px] rounded-xl overflow-hidden shadow-2xl group">
               <img
                 src={aboutImage}
                 alt="Talon Cleaning team at work"
@@ -376,126 +406,61 @@ export default function Home() {
         </div>
       </section>
       {/* How It Works Section */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-[#0F2A44] mb-4 text-center">
-            Our <span className="text-[#C6A35A]">Process</span>
-          </h2>
-          <p className="text-xl text-gray-600 text-center mb-12">
-            Simple, Clear, and Reliable
-          </p>
+      <section className="bg-white py-10 px-6">
+  <div className="max-w-4xl mx-auto">
+    <Reveal>
+      <div className="text-center mb-16">
+        <span className="block text-sm text-[#C6A35A] font-semibold">How It Works</span>
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F2A44] mb-3">
+          Our <em className="text-[#C6A35A]">Process</em>
+        </h2>
+        <p className="text-gray-500 text-base sm:text-lg">
+          Simple, clear, and reliable — from first contact to ongoing support.
+        </p>
+      </div>
+    </Reveal>
 
-          <div className="relative">
-            {/* Timeline line - hidden on mobile */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#C6A35A]/30" />
+    <div className="relative">
+      {/* Central spine */}
+      <div className="absolute left-1/2 top-6 bottom-6 w-px bg-gradient-to-b from-transparent via-[#C6A35A]/40 to-transparent transform -translate-x-1/2 hidden md:block" />
 
-            {/* Steps */}
-            <div className="space-y-12">
-              {/* Step 1 */}
-              <div className="relative flex flex-col md:flex-row items-center gap-8">
-                <div className="md:w-1/2 md:text-right">
-                  <div className="bg-gray-50 rounded-lg p-6 shadow-md">
-                    <h3 className="font-playfair text-2xl font-bold text-[#0F2A44] mb-3">
-                      Step 1 — Consultation
-                    </h3>
-                    <p className="text-gray-700">
-                      We learn about your needs, space, and cleaning
-                      requirements to create a tailored solution.
-                    </p>
-                  </div>
+      {[
+        { n: 1, title: "Consultation", body: "We learn about your needs, space, and cleaning requirements to create a tailored solution." },
+        { n: 2, title: "Custom Plan", body: "We design a cleaning schedule and checklist suited to your environment and priorities." },
+        { n: 3, title: "Professional Cleaning", body: "Our trained team delivers thorough, detail-focused cleaning using clear standards." },
+        { n: 4, title: "Quality Assurance", body: "We ensure consistency through inspections, clear communication, and ongoing feedback." },
+        { n: 5, title: "Ongoing Support", body: "We remain flexible and responsive as your needs evolve — a true long-term partner." },
+      ].map((step, i) => (
+        <Reveal key={i} delay={i * 100}>
+          <div className="flex flex-col md:flex-row md:justify-between items-start mb-8 relative">
+            {/* Connector dot */}
+            <div className="absolute md:left-1/2 top-6 md:top-6 w-3 h-3 bg-[#C6A35A] rounded-full transform -translate-x-1/2 z-10 shadow-[0_0_0_4px_rgba(198,163,90,0.2)]" />
+
+            {/* Step box */}
+            <div className={`bg-[#f8f7f4] rounded-lg p-6 border-l-4 border-[#C6A35A] shadow-md w-full md:w-5/12 ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`}>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 bg-[#0F2A44] text-[#C6A35A] rounded-full flex items-center justify-center font-bold">
+                  {step.n}
                 </div>
-                <div className="hidden md:flex w-12 h-12 bg-[#C6A35A] rounded-full items-center justify-center text-white font-bold text-xl z-10 shrink-0">
-                  1
-                </div>
-                <div className="md:w-1/2" />
+                <h3 className="text-[#0F2A44] font-bold text-lg">{step.title}</h3>
               </div>
-
-              {/* Step 2 */}
-              <div className="relative flex flex-col md:flex-row items-center gap-8">
-                <div className="md:w-1/2" />
-                <div className="hidden md:flex w-12 h-12 bg-[#C6A35A] rounded-full items-center justify-center text-white font-bold text-xl z-10 shrink-0">
-                  2
-                </div>
-                <div className="md:w-1/2">
-                  <div className="bg-gray-50 rounded-lg p-6 shadow-md">
-                    <h3 className="font-playfair text-2xl font-bold text-[#0F2A44] mb-3">
-                      Step 2 — Custom Plan
-                    </h3>
-                    <p className="text-gray-700">
-                      We design a cleaning schedule and checklist suited to your
-                      environment and priorities.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="relative flex flex-col md:flex-row items-center gap-8">
-                <div className="md:w-1/2 md:text-right">
-                  <div className="bg-gray-50 rounded-lg p-6 shadow-md">
-                    <h3 className="font-playfair text-2xl font-bold text-[#0F2A44] mb-3">
-                      Step 3 — Professional Cleaning
-                    </h3>
-                    <p className="text-gray-700">
-                      Our trained team delivers thorough, detail-focused
-                      cleaning using clear standards.
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:flex w-12 h-12 bg-[#C6A35A] rounded-full items-center justify-center text-white font-bold text-xl z-10 shrink-0">
-                  3
-                </div>
-                <div className="md:w-1/2" />
-              </div>
-
-              {/* Step 4 */}
-              <div className="relative flex flex-col md:flex-row items-center gap-8">
-                <div className="md:w-1/2" />
-                <div className="hidden md:flex w-12 h-12 bg-[#C6A35A] rounded-full items-center justify-center text-white font-bold text-xl z-10 shrink-0">
-                  4
-                </div>
-                <div className="md:w-1/2">
-                  <div className="bg-gray-50 rounded-lg p-6 shadow-md">
-                    <h3 className="font-playfair text-2xl font-bold text-[#0F2A44] mb-3">
-                      Step 4 — Quality Assurance
-                    </h3>
-                    <p className="text-gray-700">
-                      We ensure consistency through inspections, communication,
-                      and ongoing support.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="relative flex flex-col md:flex-row items-center gap-8">
-                <div className="md:w-1/2 md:text-right">
-                  <div className="bg-gray-50 rounded-lg p-6 shadow-md">
-                    <h3 className="font-playfair text-2xl font-bold text-[#0F2A44] mb-3">
-                      Step 5 — Ongoing Support
-                    </h3>
-                    <p className="text-gray-700">
-                      We remain flexible and responsive as your needs evolve.
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:flex w-12 h-12 bg-[#C6A35A] rounded-full items-center justify-center text-white font-bold text-xl z-10 shrink-0">
-                  5
-                </div>
-                <div className="md:w-1/2" />
-              </div>
+              <p className="text-gray-500 text-sm leading-relaxed">{step.body}</p>
             </div>
           </div>
-        </div>
-      </section>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Testimonials */}
-            <Testimonials  />
+      <Testimonials />
 
       {/* CTA Section */}
       <section
         id="contact"
-        className="bg-gradient-to-br from-[#0F2A44] to-[#5A728A] py-24 px-6 text-center text-white"
+        className="bg-gradient-to-br from-[#0F2A44] to-[#5A728A] py-8 px-6 text-center text-white"
       >
         <div className="max-w-4xl mx-auto">
           <h2 className="font-playfair text-4xl md:text-5xl mb-5">

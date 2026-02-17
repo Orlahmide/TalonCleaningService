@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   try {
     await resend.emails.send({
       from: 'Talon Cleaning <quotes@mail.taloncleaningservices.co.uk>',
-      to: 'support-a@taloncleaningservices.co.uk', // your inbox
+      to: 'customersupport@taloncleaningservices.co.uk', // your inbox
       reply_to: email,
       subject: `New Quote Request - ${service}`,
       html: `

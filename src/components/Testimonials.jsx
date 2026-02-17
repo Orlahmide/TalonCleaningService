@@ -22,7 +22,7 @@ while (slides.length % 4 !== 0) slides.push({ text: "", name: "" });
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-white py-8 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-playfair text-center text-4xl md:text-5xl text-[#0F2A44] mb-16">
           What Our Clients Say
