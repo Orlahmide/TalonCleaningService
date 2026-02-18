@@ -15,8 +15,8 @@ export default async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: "Talon Cleaning Services <customersupport@taloncleaningservices.co.uk>",
-      to: email,
+      from: "Talon Cleaning Services <customersupport@mail.taloncleaningservices.co.uk>",
+      replyTo: "customersupport@taloncleaningservices.co.uk",
       subject: "Thank You for Your Request!",
       html: `
         <p>Hello ${name},</p>
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
           <li>Our team will reach out to you to discuss your request.</li>
         </ul>
 
-        <p>If you have any questions or special requests, please feel free to contact us at any time.</p>
+        <p>If you have any questions or special requests, please feel free to reply to this email.</p>
 
         <p>Kind regards,<br/>
         Talon Cleaning Services</p>

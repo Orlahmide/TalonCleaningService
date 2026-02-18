@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: 'Talon Cleaning <quotes@mail.taloncleaningservices.co.uk>',
       to: 'support-a@taloncleaningservices.co.uk', // your inbox
-      reply_to: email,
+      replyTo: email,
       subject: `New Quote Request - ${service}`,
       html: `
         <div style="font-family: Arial, sans-serif; color: #0F2A44; line-height: 1.5; max-width: 600px; margin: auto; border: 1px solid #E0E0E0; padding: 20px; border-radius: 8px; background-color: #FFFFFF;">
