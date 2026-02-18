@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: "Talon Cleaning Services <no-reply@taloncleaningservices.co.uk>",
+      from: "Talon Cleaning Services <customersupport@taloncleaningservices.co.uk>",
       to: email,
       subject: "Thank You for Your Request!",
       html: `
