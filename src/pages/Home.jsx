@@ -234,15 +234,10 @@ export default function Home() {
         <div className="max-w-3xl mx-auto">
           {/* Elegant Heading */}
           <h3 className="font-playfair text-3xl md:text-4xl text-[#0F2A44] mb-2">
-            Areas We Proudly Currently Serve
+            Areas We Currently Serve
           </h3>
 
           <div className="w-24 h-[2px] bg-[#C6A35A] mx-auto mb-3"></div>
-
-          <p className="text-[#555] mb-9 max-w-2xl mx-auto">
-            Delivering professional cleaning services across Cambridgeshire and
-            Lincolnshire.
-          </p>
 
           {/* Locations Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
@@ -267,9 +262,18 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p className="text-[14px] mt-3 max-w-2xl mx-auto">
-            Don’t see your location? Reach out — we’d love to help!
-          </p>
+
+          {/* Contact Note */}
+        <p className="text-[14px] mt-4 max-w-2xl mx-auto text-[#555]">
+          Don’t see your location listed?{" "}
+          <span
+            onClick={() => navigate("/contact")}
+            className="font-semibold text-[#C6A35A] cursor-pointer hover:underline"
+          >
+            Contact us
+          </span>{" "}
+          and we’ll discuss if we can arrange service in your area.
+        </p>
         </div>
       </section>
 

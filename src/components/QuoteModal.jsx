@@ -117,7 +117,7 @@ export default function QuoteModal({ showQuoteModal, setShowQuoteModal }) {
             setShowQuoteModal(false);
             setQuoteSuccess(false);
           }}
-          className="absolute top-4 right-4 md:top-6 md:right-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors z-50"
+          className="absolute top-4 right-4 md:top-6 md:right-6 text-4xl font-light text-[#2E2E2E] hover:text-[#C6A35A] transition-colors z-60"
         >
           &times;
         </button>

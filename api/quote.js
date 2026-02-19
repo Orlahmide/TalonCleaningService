@@ -42,7 +42,7 @@ export default async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: 'New Quote Request <quotes@mail.taloncleaningservices.co.uk>',
+      from: 'New Quote Request <customersupport@mail.taloncleaningservices.co.uk>',
       to: 'support-a@taloncleaningservices.co.uk', // your inbox
       replyTo: email,
       subject: `New Quote Request - ${service}`,

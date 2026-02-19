@@ -8,8 +8,9 @@ import Footer from "./components/Footer";
 import QuoteModal from "./components/QuoteModal";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
-import ScrollToTop from "./components/ScrollToTop";
-import { Analytics } from '@vercel/analytics/react';
+import ScrollToTop from "./components/Scroll";
+import { Analytics } from "@vercel/analytics/react";
+import FloatingContact from "./components/FloatingContact";
 
 export default function App() {
   const [showQuoteModal, setShowQuoteModal] = useState(false);
@@ -23,42 +24,36 @@ export default function App() {
     <div className="min-h-screen text-gray-800">
       {/* Navigation - Single navbar for entire app */}
       <Navbar onGetQuote={handleGetQuote} />
-       <ScrollToTop />
+      <ScrollToTop />
       <main className="py-0">
         <Routes>
           {/* Pass the quote handler to each page */}
-          <Route 
-            path="/" 
-            element={<Home onGetQuote={handleGetQuote} />} 
+          <Route path="/" element={<Home onGetQuote={handleGetQuote} />} />
+          <Route
+            path="/contact"
+            element={<Contact onGetQuote={handleGetQuote} />}
           />
-          <Route 
-            path="/contact" 
-            element={<Contact onGetQuote={handleGetQuote} />} 
+          <Route
+            path="/about"
+            element={<AboutUs onGetQuote={handleGetQuote} />}
           />
-          <Route 
-            path="/about" 
-            element={<AboutUs onGetQuote={handleGetQuote} />} 
+          <Route
+            path="/services"
+            element={<ServicePageWrapper onGetQuote={handleGetQuote} />}
           />
-          <Route 
-            path="/services" 
-            element={<ServicePageWrapper onGetQuote={handleGetQuote} />} 
+          <Route
+            path="/services/:serviceId"
+            element={<ServicePageWrapper onGetQuote={handleGetQuote} />}
           />
-          <Route 
-            path="/services/:serviceId" 
-            element={<ServicePageWrapper onGetQuote={handleGetQuote} />} 
-          />
-          <Route 
-            path="/FAQs" 
-            element={<FAQ onGetQuote={handleGetQuote} />} 
-          />
+          <Route path="/FAQs" element={<FAQ onGetQuote={handleGetQuote} />} />
         </Routes>
       </main>
-
       {/* Footer - Single footer for entire app */}
       <Footer />
+            <FloatingContact />
 
       {/* Quote Modal - Using your existing QuoteModal props structure */}
-      <QuoteModal 
+      <QuoteModal
         showQuoteModal={showQuoteModal}
         setShowQuoteModal={setShowQuoteModal}
         quoteSuccess={quoteSuccess}

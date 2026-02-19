@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+
 
 const Footer = () => {
   const scrollToSection = (sectionId) => {
@@ -11,18 +13,16 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-<footer className="bg-[#0F2A44] text-white pt- 10 py-4 px-4 text-sm 
-rounded-t-2xl 
-shadow-[0_0_60px_rgba(198,163,90,0.25)]">
-      <div className="max-w-6xl mx-auto ">
-        {/* Footer Top */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-1 justify-items-center text-center">
+    <footer className="bg-[#0F2A44] text-white px-3 py-4 text-sm rounded-t-lg">
+      <div className="max-w-6xl mx-auto">
+        {/* Footer Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
           {/* Company */}
           <div>
-            <h3 className="font-playfair text-[#C6A35A] mb-1 text-sm">
+            <h3 className="font-playfair text-[#C6A35A] text-sm mb-2">
               Talon Cleaning
             </h3>
-            <p className="text-white/70 leading-tight">
+            <p className="text-white/70 leading-snug text-xs">
               Reliable cleaning for commercial, accommodation, hospitality &
               domestic.
             </p>
@@ -30,10 +30,10 @@ shadow-[0_0_60px_rgba(198,163,90,0.25)]">
 
           {/* Services */}
           <div>
-            <h3 className="font-playfair text-[#C6A35A] mb-1 text-sm">
+            <h3 className="font-playfair text-[#C6A35A] text-sm mb-2">
               Services
             </h3>
-            <ul className="space-y-1">
+            <ul className="space-y-1 text-xs">
               <li>
                 <button
                   onClick={() => navigate("/services/commercial")}
@@ -71,16 +71,16 @@ shadow-[0_0_60px_rgba(198,163,90,0.25)]">
 
           {/* Company Links */}
           <div>
-            <h3 className="font-playfair text-[#C6A35A] mb-1 text-sm">
+            <h3 className="font-playfair text-[#C6A35A] text-sm mb-2">
               Company
             </h3>
-            <ul className="space-y-1">
+            <ul className="space-y-1 text-xs">
               <li>
                 <button
                   onClick={() => navigate("/about")}
                   className="text-white/70 hover:text-[#C6A35A]"
                 >
-                  About
+                  About Us
                 </button>
               </li>
               <li>
@@ -96,37 +96,47 @@ shadow-[0_0_60px_rgba(198,163,90,0.25)]">
                   onClick={() => navigate("/contact")}
                   className="text-white/70 hover:text-[#C6A35A]"
                 >
-                  Contact
+                  Contact Us
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Contact (no boxes) */}
-          <div>
-            <h3 className="font-playfair text-[#C6A35A] mb-1 text-sm">
-              Contact Us
-            </h3>
-            <ul className="space-y-1 text-white/70 leading-tight">
-              <li>
-                <a href="tel:07466311134" className="hover:text-[#C6A35A]">
-                  📞 Call Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:customersupport@taloncleaningservices.co.uk"
-                  className="hover:text-[#C6A35A]"
-                >
-                  ✉ Email Us
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* Contact */}
+<div>
+  <h3 className="font-playfair text-[#C6A35A] text-sm mb-1">
+    Contact
+  </h3>
+
+  <ul className="space-y-1 text-xs text-white/70">
+    <li>
+      <a
+        href="tel:07466311134"
+        className="flex items-center gap-2 hover:text-[#C6A35A] transition-colors"
+      >
+        <FaPhoneAlt className="text-red-500 text-[12px] shrink-0" />
+        <span>07466 311134</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="mailto:customersupport@taloncleaningservices.co.uk"
+        className="flex items-center gap-2 hover:text-[#C6A35A] transition-colors"
+      >
+        <FaEnvelope className="text-[12px] shrink-0" />
+        <span className="break-all">
+          customersupport@taloncleaningservices.co.uk
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+
         </div>
 
         {/* Copyright */}
-        <div className="text-center border-t border-white/10 pt-2 text-white/50 text-[10px]">
+        <div className="border-t border-white/10 mt-2 pt-2 text-center text-white/50 text-[10px]">
           © 2026 Talon Cleaning Services
         </div>
       </div>

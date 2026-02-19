@@ -145,7 +145,7 @@ const FAQOption1 = ({ onGetQuote = () => {} }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          marginTop: "80px",
+          marginTop: "20px",
         }}
       >
         {/* Background Image with Scale */}
@@ -287,11 +287,8 @@ const FAQOption1 = ({ onGetQuote = () => {} }) => {
       </section>
 
       {/* CTA Section - Gold with transition to blue footer */}
-      <section className="relative py-10 px-6 bg-gradient-to-b from-white to-[#D4B583]/20">
-        {/* Top decorative wave */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C6A35A]/30 to-transparent"></div>
-
-        <div className="max-w-4xl mx-auto text-center relative">
+      <section className="relative py-6 px-6 bg-gradient-to-b from-white to-[#D4B583]/20">
+          <div className="max-w-4xl mx-auto text-center relative">
           {/* Decorative gold accent */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="w-16 h-[1px] bg-[#C6A35A]/30"></div>

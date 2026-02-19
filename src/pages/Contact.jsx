@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import faqHeroImage from "../assets/contact.jpg";
+import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 
 const Contact = ({ onGetQuote = () => {} }) => {
   const [formData, setFormData] = useState({
@@ -117,87 +118,89 @@ const Contact = ({ onGetQuote = () => {} }) => {
         }
       `}</style>
       {/* Hero Section */}
-<section
-  className="relative overflow-hidden px-6 md:px-12"
-  style={{
-    minHeight: "65vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    marginTop: "80px",
-  }}
->
-  {/* Background Image with Animation */}
-  <div
-    className="absolute inset-0 bg-cover bg-center hero-bg-animate"
-    style={{ backgroundImage: `url(${faqHeroImage})` }}
-  />
-
-  {/* Gradient Overlay */}
-  <div
-    className="absolute inset-0"
-    style={{
-      background:
-        "linear-gradient(110deg, rgba(15,42,68,0.88) 0%, rgba(15,42,68,0.85) 100%, rgba(26,58,92,0.82) 100%)",
-    }}
-  />
-
-  {/* Decorative Elements */}
-  <div className="absolute inset-0 opacity-[0.03]">
-    <div className="absolute top-16 right-16 w-64 h-64 border border-white rounded-full"></div>
-    <div className="absolute bottom-16 left-16 w-48 h-48 border border-white rounded-full"></div>
-  </div>
-
-  {/* Vertical Gold Accent */}
-  <div
-    className="absolute left-0 top-0 bottom-0 w-1"
-    style={{
-      background:
-        "linear-gradient(180deg, transparent 0%, #C6A35A 25%, #C6A35A 75%, transparent 100%)",
-    }}
-  />
-
-  {/* Content Container */}
-  <div className="relative z-10 max-w-4xl mx-auto text-center">
-    {/* Badge */}
-    <div className="animate-fadeUp-1 mb-6">
-      <span className="font-body inline-block text-[10px] font-semibold tracking-[0.25em] uppercase text-[#C6A35A] px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
-        Premium Cleaning Services
-      </span>
-    </div>
-
-    {/* Main Heading */}
-    <h1 className="animate-fadeUp-1 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-      Ready for a Cleaner, <br />
-      <span className="italic text-[#C6A35A]">Stress-Free Space?</span>
-    </h1>
-
-    {/* Decorative Divider */}
-    <div className="animate-fadeUp-2 flex items-center justify-center gap-4 mb-8">
-      <span className="gold-divider animate-lineGrow"></span>
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 20 20"
-        className="text-[#C6A35A] opacity-70"
+      <section
+        className="relative overflow-hidden px-6 md:px-12"
+        style={{
+          minHeight: "65vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          marginTop: "40px",
+        }}
       >
-        <path fill="currentColor" d="M10,0 L12,8 L20,10 L12,12 L10,20 L8,12 L0,10 L8,8 Z" />
-      </svg>
-      <span className="gold-divider animate-lineGrow"></span>
-    </div>
+        {/* Background Image with Animation */}
+        <div
+          className="absolute inset-0 bg-cover bg-center hero-bg-animate"
+          style={{ backgroundImage: `url(${faqHeroImage})` }}
+        />
 
-    {/* Description */}
-    <p className="animate-fadeUp-2 font-body text-base md:text-lg text-white/85 leading-relaxed max-w-3xl mx-auto mb-6">
-      Let us take care of the cleaning so you can focus on what matters most.
-    </p>
-    <p className="animate-fadeUp-2 font-body text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-      Whether you need regular cleaning, a deep clean, or professional support for your business or property, we're here to help.
-    </p>
+        {/* Gradient Overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(110deg, rgba(15,42,68,0.88) 0%, rgba(15,42,68,0.85) 100%, rgba(26,58,92,0.82) 100%)",
+          }}
+        />
 
-    
-  </div>
-</section>
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute top-16 right-16 w-64 h-64 border border-white rounded-full"></div>
+          <div className="absolute bottom-16 left-16 w-48 h-48 border border-white rounded-full"></div>
+        </div>
 
+        {/* Vertical Gold Accent */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-1"
+          style={{
+            background:
+              "linear-gradient(180deg, transparent 0%, #C6A35A 25%, #C6A35A 75%, transparent 100%)",
+          }}
+        />
+
+        {/* Content Container */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <div className="animate-fadeUp-1 mb-6">
+            <span className="font-body inline-block text-[10px] font-semibold tracking-[0.25em] uppercase text-[#C6A35A] px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+              Premium Cleaning Services
+            </span>
+          </div>
+
+          {/* Main Heading */}
+          <h1 className="animate-fadeUp-1 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Ready for a Cleaner, <br />
+            <span className="italic text-[#C6A35A]">Stress-Free Space?</span>
+          </h1>
+
+          {/* Decorative Divider */}
+          <div className="animate-fadeUp-2 flex items-center justify-center gap-4 mb-8">
+            <span className="gold-divider animate-lineGrow"></span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 20 20"
+              className="text-[#C6A35A] opacity-70"
+            >
+              <path
+                fill="currentColor"
+                d="M10,0 L12,8 L20,10 L12,12 L10,20 L8,12 L0,10 L8,8 Z"
+              />
+            </svg>
+            <span className="gold-divider animate-lineGrow"></span>
+          </div>
+
+          {/* Description */}
+          <p className="animate-fadeUp-2 font-body text-base md:text-lg text-white/85 leading-relaxed max-w-3xl mx-auto mb-6">
+            Let us take care of the cleaning so you can focus on what matters
+            most.
+          </p>
+          <p className="animate-fadeUp-2 font-body text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
+            Whether you need regular cleaning, a deep clean, or professional
+            support for your business or property, we're here to help.
+          </p>
+        </div>
+      </section>
 
       {/* Main Content - Two Columns */}
       {/* Contact & Map Section */}
@@ -211,33 +214,57 @@ const Contact = ({ onGetQuote = () => {} }) => {
               </h2>
 
               {/* Contact Cards */}
-              <div className="space-y-6 mb-10">
+              <div className="space-y-4 mb-6">
                 {/* Phone */}
-                <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl hover:shadow-md transition">
-                  <div className="w-12 h-12 rounded-full bg-[#C6A35A] flex items-center justify-center text-white text-xl">
+                <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:shadow-md transition">
+                  <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white text-lg">
                     📞
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#0F2A44]">Call Us</h3>
+                    <h3 className="font-semibold text-[#0F2A44] text-sm">
+                      Call Us
+                    </h3>
                     <a
                       href="tel:07466311134"
-                      className="text-gray-700 hover:text-[#C6A35A] transition-colors text-lg"
+                      className="text-gray-700 hover:text-[#C6A35A] transition-colors text-sm"
                     >
                       07466 311134
                     </a>
                   </div>
                 </div>
 
+                {/* WhatsApp */}
+                <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:shadow-md transition">
+                  <div className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center text-white text-lg">
+                    <FaWhatsapp className="text-white text-2xl" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#0F2A44] text-sm">
+                      WhatsApp
+                    </h3>
+                    <a
+                      href="https://wa.me/07466311134"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-700 hover:text-[#25D366] transition-colors text-sm"
+                    >
+                      Chat with us
+                    </a>
+                  </div>
+                </div>
+
                 {/* Email */}
-                <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl hover:shadow-md transition">
-                  <div className="w-12 h-12 rounded-full bg-[#C6A35A] flex items-center justify-center text-white text-xl">
+                <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:shadow-md transition">
+                  <div className="w-10 h-10 rounded-full bg-[#1E3A8A] flex items-center justify-center text-white text-lg">
                     ✉
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#0F2A44]">Email Us</h3>
+                    <h3 className="font-semibold text-[#0F2A44] text-sm">
+                      Email Us
+                    </h3>
                     <a
                       href="mailto:customersupport@taloncleaningservices.co.uk"
-                      className="text-gray-700 hover:text-[#C6A35A] transition-colors break-all"
+                      className="text-gray-700 hover:text-[#C6A35A] transition-colors break-all text-sm"
                     >
                       customersupport@taloncleaningservices.co.uk
                     </a>
@@ -245,16 +272,16 @@ const Contact = ({ onGetQuote = () => {} }) => {
                 </div>
 
                 {/* Hours */}
-                <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl">
-                  <div className="w-12 h-12 rounded-full bg-[#C6A35A] flex items-center justify-center text-white text-xl">
+                <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                  <div className="w-10 h-10 rounded-full bg-[#C6A35A] flex items-center justify-center text-white text-lg">
                     🕒
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#0F2A44]">
+                    <h3 className="font-semibold text-[#0F2A44] text-sm">
                       Business Hours
                     </h3>
-                    <p className="text-gray-700">
-                      Monday – Sunday: 6:00 AM – 10:00 PM
+                    <p className="text-gray-700 text-sm">
+                      Monday – Sunday: 7:00 AM – 10:00 PM
                     </p>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules"; // added Navigation
 import "swiper/css";
-import "swiper/css/effect-fade";
+import "swiper/css/navigation"; // import navigation styles
 import "swiper/css/autoplay";
 
 const testimonials = [
@@ -11,9 +11,8 @@ const testimonials = [
   { text: "Our offices have never looked better. Truly professional service.", name: "Daniel Lee" },
   { text: "Fast, efficient, and thorough cleaning every time.", name: "Emma Davis" },
   { text: "Highly skilled team. They always go above and beyond.", name: "Liam Brown" },
-    { text: "Wonderful work done by the team, 5 stars!", name: "Adelina Ajuzazobona" },
+  { text: "Wonderful work done by the team, 5 stars!", name: "Adelina Ajuzazobona" },
   { text: "Highly skilled team. They always go above and beyond.", name: "Liam Brown" },
-
 ];
 
 // Fillers to always show multiples of 4
@@ -22,19 +21,24 @@ while (slides.length % 4 !== 0) slides.push({ text: "", name: "" });
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-8 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-white py-8 px-6 relative">
+      <div className="max-w-6xl mx-auto relative">
         <h2 className="font-playfair text-center text-4xl md:text-5xl text-[#0F2A44] mb-16">
           What Our Clients Say
         </h2>
 
+        {/* Swiper */}
         <Swiper
-          modules={[Autoplay]}
+          modules={[Autoplay, Navigation]} // include Navigation
           spaceBetween={20}
           slidesPerView={4}
           loop={true}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
-          speed={1000} // smooth transition
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          speed={1000}
           breakpoints={{
             0: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
@@ -58,6 +62,18 @@ export default function Testimonials() {
               </div>
             </SwiperSlide>
           ))}
+
+          {/* Custom Gold Arrows */}
+          <div className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 p-3 rounded-full shadow-md cursor-pointer hover:bg-white transition">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </div>
+          <div className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 p-3 rounded-full shadow-md cursor-pointer hover:bg-white transition">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
         </Swiper>
       </div>
     </section>

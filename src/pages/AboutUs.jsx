@@ -254,7 +254,7 @@ const AboutUs = ({ onGetQuote = () => {} }) => {
       `}</style>
 
       {/* ── 1. HERO ─────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ minHeight: "65vh", display: "flex", alignItems: "center", marginTop: "80px" }}>
+      <section className="relative overflow-hidden" style={{ minHeight: "65vh", display: "flex", alignItems: "center", marginTop: "40px" }}>
         <div
           className="hero-bg absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${faqHeroImage})` }}
@@ -510,7 +510,6 @@ const AboutUs = ({ onGetQuote = () => {} }) => {
     </div>
   </div>
 </section>
-
     </div>
   );
 };
