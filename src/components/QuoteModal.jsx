@@ -33,7 +33,7 @@ export default function QuoteModal({ showQuoteModal, setShowQuoteModal }) {
         } catch (err) {
           console.error("Auto-reply failed:", err);
         }
-        
+
         e.target.reset();
       } else {
         setQuoteMessage({
@@ -130,11 +130,10 @@ export default function QuoteModal({ showQuoteModal, setShowQuoteModal }) {
         {quoteMessage && (
           <div
             className={`fixed top-6 right-6 z-50 px-6 py-4 rounded-lg shadow-lg max-w-xs text-center transition-all duration-500 transform
-            ${
-              quoteMessage.type === "success"
+            ${quoteMessage.type === "success"
                 ? "bg-green-100 border border-green-300 text-green-800"
                 : "bg-red-100 border border-red-300 text-red-800"
-            }
+              }
             animate-slideInFromRight
             `}
           >
@@ -192,6 +191,8 @@ export default function QuoteModal({ showQuoteModal, setShowQuoteModal }) {
               { value: "phone", label: "Phone call" },
               { value: "email", label: "Email" },
               { value: "text", label: "Text Message" },
+              { value: "whatsapp", label: "Text Message" },
+
             ]}
           />
           <FormTextarea label="Message / Requirements" name="message" />
