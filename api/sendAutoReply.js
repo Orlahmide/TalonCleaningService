@@ -165,11 +165,6 @@ export default async function handler(req, res) {
           </td>
         </tr>
       </table>
-
-      <!-- Tagline -->
-      <p style="margin:8px 0 0 0; font-size:14px; color:#555;">
-        Clean Spaces. Clear Standards. Total Peace of Mind.
-      </p>
     </td>
   </tr>
 </table>
