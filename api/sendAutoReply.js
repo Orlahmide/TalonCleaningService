@@ -142,11 +142,37 @@ export default async function handler(req, res) {
 <body>
   <div class="email-container">
     <!-- Header with Logo -->
-    <div class="email-header">
-      <img src="${LOGO_BASE64}" alt="Talon Cleaning Services" class="logo" />
-      <h1 class="company-name">TALON CLEANING SERVICES</h1>
-      <p class="company-tagline">Clean Spaces. Clear Standards. Total Peace of Mind.</p>
-    </div>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="email-header" style="text-align:center;">
+  <tr>
+    <td align="center">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <!-- Logo -->
+          <td style="vertical-align: middle; padding-right: 10px;">
+            <img 
+              src="${LOGO_BASE64}" 
+              alt="Talon Cleaning Services" 
+              width="60" 
+              style="display:block; height:auto;"
+            />
+          </td>
+
+          <!-- Company Name -->
+          <td style="vertical-align: middle;">
+            <h1 style="margin:0; font-size:20px; font-weight:bold;">
+              TALON CLEANING SERVICES
+            </h1>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Tagline -->
+      <p style="margin:8px 0 0 0; font-size:14px; color:#555;">
+        Clean Spaces. Clear Standards. Total Peace of Mind.
+      </p>
+    </td>
+  </tr>
+</table>
 
     <!-- Email Body -->
     <div class="email-body">
