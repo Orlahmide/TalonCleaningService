@@ -191,7 +191,7 @@ export default function QuoteModal({ showQuoteModal, setShowQuoteModal }) {
               { value: "phone", label: "Phone call" },
               { value: "email", label: "Email" },
               { value: "text", label: "Text Message" },
-              { value: "whatsapp", label: "Text Message" },
+              { value: "text", label: "Whatsapp" },
 
             ]}
           />
