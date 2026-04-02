@@ -596,7 +596,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       {/* CTA Section */}
       <section
